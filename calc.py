@@ -7,5 +7,9 @@ operation = input("Select operation: ")
 match operation:
     case '+':
         c = a + b
+    case '*':
+        c = a * b
+    case _:
+        print('incorrect input, please try again')
 
 print("sum = ", c)
