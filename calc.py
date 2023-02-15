@@ -5,7 +5,11 @@ c=0
 
 operation = input("Select operation: ")
 match operation:
+    case '+':
+        c = a + b
     case '/':
         c = a / b
 
-print("div = ", c)
+print("result = ", c)
+
+
