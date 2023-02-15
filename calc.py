@@ -5,7 +5,7 @@ c=0
 
 operation = input("Select operation: ")
 match operation:
-    case '+':
-        c = a + b
+    case '/':
+        c = a / b
 
-print("sum = ", c)
+print("div = ", c)
