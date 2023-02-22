@@ -7,9 +7,9 @@ operation = input("Select operation: ")
 match operation:
     case '+':
         c = a + b
-        print("Result of adding = ", c)
     case '-':
         c = a - b
-        print("Result of substraction = ", c)
+    case '/':
+        c = a / b
 
-print("Programm ended. Thank you for using.")
+print("result = ", c)
