@@ -9,6 +9,8 @@ match operation:
         c = a + b
     case '-':
         c = a - b
+    case '*':
+        c = a * b
     case '/':
         c = a / b
 
