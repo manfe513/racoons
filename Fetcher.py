@@ -1,4 +1,5 @@
 import os
+import ssl
 import sys
 import zipfile
 import wget
@@ -8,6 +9,7 @@ from Const import FILES_ARCHIVE_NAME, FILES_DIR, FILES_URL
 
 class Fetcher:
     def __init__(self):
+        ssl._create_default_https_context = ssl._create_unverified_context
         return
 
     def __bar_progress(self, current, total):
