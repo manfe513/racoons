@@ -32,5 +32,21 @@ def open_file():
         # для построения графика нужен путь к файлу без расширения
         dataForPlotting = filepath.replace('.dat', '')
 
+	# номер нужен чтобы на графике отображался его номер (3 последнии цифры названия файла)
+      	recordNumber= dataForPlotting[-3:];
+
+	# получить запись
+      	record = wfdb.rdrecord(record_name=dataForPlotting, sampto=3000);
+
+	# получить аннотацию
+      	annotation = wfdb.rdann(record_name=dataForPlotting, extension='atr', sampto=3000);
+
+	# построить график, используя полученные аннотацию и запись
+      	wfdb.plot_wfdb(record=record, annotation=annotation, plot_sym=True,
+      	time_units = 'seconds', title = 'MIT-BIH Record {}'.format(recordNumber),
+      	figsize = (10, 4), ecg_grids = 'all');
+
+	# вывести данные об открытых файлах на панель окна
+      	Label(win, text="The File is located at : " + str(filepath), font=('Aerial 11')).pack();
 
 # 4 - ОТРИСОВКА ГРАФИКА
