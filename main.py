@@ -1,3 +1,8 @@
+import os
+import wfdb
+import wfdb.io
+from tkinter import *
+from tkinter import ttk, filedialog
 from Downloader import Downloader
 
 # 1 - ЗАГРУЗКА ФАЙЛОВ
@@ -12,7 +17,7 @@ win.geometry("700x350");
 
 label = Label(win, text="Click the Button to browse the Files", font=('Georgia 13'));
 
-label.pack(pady=10);
+label.pack(pady=10)
 
 # добавить кнопку на окно (для открытия диалога выбора файла)
 ttk.Button(win, text="Browse", command=open_file).pack(pady=20)
