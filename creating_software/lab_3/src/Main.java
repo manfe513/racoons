@@ -5,6 +5,10 @@ import java.util.Scanner;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
+    /**
+     * Сканер используется для получения ввода пользователя из консоли
+     */
+    Scanner in = new Scanner(System.in);
 
     /**
      * Форматировать вывод (2 знака после запятой)
@@ -20,7 +24,7 @@ public class Main {
      */
     private static int getAndCheckInputValueInt(String valueAnnotation) {
         System.out.println(valueAnnotation);
-        Scanner in = new Scanner(System.in);
+
         int userInput = -1;
         if (in.hasNextInt()) {
             userInput = in.nextInt();
@@ -80,7 +84,4 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
-        
-    }
 }
