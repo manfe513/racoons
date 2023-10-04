@@ -5,10 +5,7 @@ import java.util.Scanner;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    /**
-     * Сканер используется для получения ввода пользователя из консоли
-     */
-    Scanner in = new Scanner(System.in);
+
 
     /**
      * Форматировать вывод (2 знака после запятой)
@@ -24,7 +21,7 @@ public class Main {
      */
     private static int getAndCheckInputValueInt(String valueAnnotation) {
         System.out.println(valueAnnotation);
-
+        Scanner in = new Scanner(System.in);
         int userInput = -1;
         if (in.hasNextInt()) {
             userInput = in.nextInt();
@@ -83,5 +80,51 @@ public class Main {
         System.out.println(result);
     }
 
+    //////=========================================================
+    // Задание 1
+    /////==========================================================
+
+    /**
+     * Потенциальный объем программы (задание 1)
+     */
+    //
+    private static float estimatedCodeVolume(int n2) {
+        float result = (n2 + 2) * log2(n2 + 2);
+        return result;
+    }
+
+    /**
+     * Потенциальное число ошибок (задание 1)
+     */
+    private static float estimatedNumberOfErrors(float estimatedCodeVolume, float programmingLanguageTier) {
+        return (float) Math.pow(estimatedCodeVolume, 2) / (3000 * programmingLanguageTier);
+    }
+
+    /**
+     * Задание №1
+     */
+    private static void task1() {
+        int minimalDifferentOperandsNumber =
+                getAndCheckInputValueInt("Введите минимальное число различных операндов (для задачи = 6060)");
+        float programmingLanguageTier =
+                getAndCheckInputValueFloat("Введите уровень языка программирования (для задачи =  1,53)");
+        if (!(minimalDifferentOperandsNumber == -1) && !(programmingLanguageTier == -1)) {
+
+            float estimatedCodeVolumeValue = estimatedCodeVolume(minimalDifferentOperandsNumber);
+            float estimatedNumberOfErrorsValue = estimatedNumberOfErrors(estimatedCodeVolumeValue, programmingLanguageTier);
+            String estimatedCodeVolumeValueAnnotated =
+                    annotateResult("Потенциальный объем программы", estimatedCodeVolumeValue);
+            String estimatedNumberOfErrorsValueAnnotated =
+                    annotateResult("Потенциальное число ошибок", estimatedNumberOfErrorsValue);
+            printResult(estimatedCodeVolumeValueAnnotated);
+            printResult(estimatedNumberOfErrorsValueAnnotated);
+        }
+    }
+
+    public static void main(String[] args) {
+        task1();
+    }
+
 
 }
+
