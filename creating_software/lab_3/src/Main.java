@@ -121,8 +121,161 @@ public class Main {
         }
     }
 
+    //////=========================================================
+    // Задание 2
+    /////==========================================================
+
+    /**
+     * Число модулей программного средства (задание 2)
+     */
+    private static float numberOfSoftwareModules(int n2) {
+        return (float) n2 / 8;
+    }
+
+    /**
+     * Число модулей программного средства (для многоуровневого ПО) (задание 2)
+     */
+    private static float numberOfSoftwareModulesMultiLevel(int n2) {
+        return (float) ((float) n2 / 8 + n2 / Math.pow(8, 2));
+    }
+
+    /**
+     * Длина программы (задание 2)
+     */
+    private static float codeLength(float numberOfSoftwareModules) {
+        return 220 * numberOfSoftwareModules + numberOfSoftwareModules * log2(numberOfSoftwareModules);
+    }
+
+    /**
+     * Найти потенциальный объем программы (задание 2)
+     */
+    //
+    private static float estimatedCodeVolumeTask2(float numberOfSoftwareModules) {
+
+        return numberOfSoftwareModules * 220 * log2(48);
+    }
+
+    /**
+     * Количество команд ассемблера (задание 2)
+     */
+    //
+    private static float numberOfAssemblyCommands(float codeLength) {
+
+        return 3 * codeLength / 8;
+    }
+
+    /**
+     * Календарное время программирования (задание 2)
+     */
+    //
+    private static float programmingCalendarTime(float codeLength, int numberOfDevs, int numberOfCommands) {
+
+        return (3 * codeLength / (8 * numberOfDevs * numberOfCommands));
+    }
+
+    /**
+     * Потенциальное число ошибок (задание 2)
+     */
+    private static float estimatedNumberOfErrorsTask2(float estimatedCodeVolume) {
+        return estimatedCodeVolume / 3000;
+    }
+
+    /**
+     * Начальная надежность ПО (время наработки на отказ) (задание 2)
+     */
+    private static float solidityOfSoftware(float numberOfHours, float estimatedNumberOfErrors) {
+        return (float) (numberOfHours / (2 * Math.log(estimatedNumberOfErrors)));
+    }
+
+    /**
+     * Задание №2
+     */
+    private static void task2() {
+        int minimalDifferentOperandsNumber;
+        int numberOfDevs;
+        int numberOfCommands;
+
+        do {
+            minimalDifferentOperandsNumber =
+                    getAndCheckInputValueInt("Введите минимальное число различных операндов (для задачи = 6060)");
+        } while ((minimalDifferentOperandsNumber == -1));
+
+
+        do {
+            numberOfCommands =
+                    getAndCheckInputValueInt(
+                            "Введите количество отлаженных в день команд на программиста (10 - 30)");
+        }
+        while ((numberOfCommands == -1));
+
+        do {
+            numberOfDevs = getAndCheckInputValueInt("Введите количество программистов в бригаде");
+        } while ((numberOfDevs == -1));
+
+
+        float numberOfSoftwareModulesValue = numberOfSoftwareModules(minimalDifferentOperandsNumber);
+        float numberOfSoftwareModulesMultiLevelValue =
+                numberOfSoftwareModulesMultiLevel(minimalDifferentOperandsNumber);
+        float codeLengthValue;
+        float estimatedCodeVolumeTask2Value;
+        if (numberOfSoftwareModulesValue > 8) {
+            codeLengthValue = codeLength(numberOfSoftwareModulesMultiLevelValue);
+            estimatedCodeVolumeTask2Value = estimatedCodeVolumeTask2(numberOfSoftwareModulesMultiLevelValue);
+        } else {
+            codeLengthValue = codeLength(numberOfSoftwareModulesValue);
+            estimatedCodeVolumeTask2Value = estimatedCodeVolumeTask2(numberOfSoftwareModulesValue);
+
+        }
+
+        float numberOfAssemblyCommandsValue = numberOfAssemblyCommands(codeLengthValue);
+
+
+        float programmingCalendarTimeValue =
+                programmingCalendarTime(codeLengthValue, numberOfDevs, numberOfCommands);
+        float estimatedNumberOfErrorsTask2Value =
+                estimatedNumberOfErrorsTask2(estimatedCodeVolumeTask2Value);
+
+        float numberOfHours = programmingCalendarTimeValue * 8;
+
+        float solidityOfSoftwareValue = solidityOfSoftware(numberOfHours, estimatedNumberOfErrorsTask2Value);
+
+        String numberOfSoftwareModulesValueAnnotated =
+                annotateResult("число модулей программного средства", numberOfSoftwareModulesValue);
+        printResult(numberOfSoftwareModulesValueAnnotated);
+
+        String numberOfSoftwareModulesMultiLevelValueAnnotated =
+                annotateResult("число модулей программного средства для многоуровнего ПО", numberOfSoftwareModulesMultiLevelValue);
+        printResult(numberOfSoftwareModulesMultiLevelValueAnnotated);
+
+        String codeLengthValueAnnotated =
+                annotateResult("Расчет длины программы", codeLengthValue);
+        printResult(codeLengthValueAnnotated);
+
+        String estimatedCodeVolumeTask2ValueAnnotated =
+                annotateResult("Расчет объема программного обеспечения", estimatedCodeVolumeTask2Value);
+        printResult(estimatedCodeVolumeTask2ValueAnnotated);
+
+        String numberOfAssemblyCommandsValueAnnotated =
+                annotateResult("Расчет количества команд ассемблера", numberOfAssemblyCommandsValue);
+        printResult(numberOfAssemblyCommandsValueAnnotated);
+
+        String programmingCalendarTimeValueAnnotated =
+                annotateResult("Расчет календарного времени программирования", programmingCalendarTimeValue);
+        printResult(programmingCalendarTimeValueAnnotated);
+
+        String estimatedNumberOfErrorsTask2ValueAnnotated =
+                annotateResult("Расчет потенциального количества ошибок", estimatedNumberOfErrorsTask2Value);
+        printResult(estimatedNumberOfErrorsTask2ValueAnnotated);
+
+        String solidityOfSoftwareValueAnnotated =
+                annotateResult("Расчет начальной надёжности ПО", solidityOfSoftwareValue);
+        printResult(solidityOfSoftwareValueAnnotated);
+    }
+
+
     public static void main(String[] args) {
         task1();
+        task2();
     }
 
 
